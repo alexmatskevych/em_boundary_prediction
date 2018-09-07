@@ -21,3 +21,7 @@ For training, we need to run train.py with arguments:
 3: (optional) config_folder the folder which the configs are in, needed for starting with sBatch default="./configs/" 
 
 4: (optional) max_train_iters number of training iterations, default=100000
+
+For example: 
+
+train.py /path/to/project_folder/ affinities_with_trafo --config_folder /path/to/config_folder/ --max_train_iters 10000
