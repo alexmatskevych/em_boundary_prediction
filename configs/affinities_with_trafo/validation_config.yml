@@ -1,0 +1,81 @@
+# Specify the names of the datasets
+dataset_names:
+  - '5'
+  - '6'
+
+# Specify how the data needs to be sliced before feeding to the network.
+# We use a 3D sliding window over the dataset to extract patches, which
+# are then fed to the network as batches.
+slicing_config:
+  # Sliding window size  # FIXME oom in validation oO
+  window_size:
+    '5': [160, 160, 160]
+    '6': [160, 160, 160]
+  # Sliding window stride
+  stride:
+    '5': [90, 90, 90]
+    '6': [90, 90, 90]
+  # Data slice to iterate over.
+  # data_slice:
+  #   A: '0:65, :, :'
+  #   B: '0:65, :, :'
+  #   C: '0:65, :, :'
+    
+# Specify paths to volumes
+volume_config:
+  # Raw data
+  raw:
+    path:
+      '5': '/g/kreshuk/data/fib25_blocks/raw/raw_block5.h5'
+      '6': '/g/kreshuk/data/fib25_blocks/raw/raw_block6.h5'
+    path_in_h5_dataset:
+      '5': 'data'
+      '6': 'data'
+    dtype: float32
+  # Segmentation
+  segmentation:
+    path:
+      '5': '/g/kreshuk/data/fib25_blocks/gt/gt_block5.h5'
+      '6': '/g/kreshuk/data/fib25_blocks/gt/gt_block6.h5'
+    path_in_h5_dataset:
+      '5': 'data'
+      '6': 'data'
+    dtype: float32
+    affinity_config:
+        offsets:
+                 - [-1, 0, 0]
+                 - [0, -1, 0]
+                 - [0, 0, -1]
+                 - [-4, 0, 0]
+                 - [0, -4, 0]
+                 - [0, 0, -4]
+                 - [-8, 0, 0]
+                 - [0, -8, 0]
+                 - [0, 0, -8]
+                 - [-16, 0, 0]
+                 - [0, -16, 0]
+                 - [0, 0, -16]
+        retain_mask: False
+        retain_segmentation: False
+        ignore_label: 0
+
+
+# Configuration for the master dataset.
+master_config:
+  # We might need order 0 interpolation if we have segmentation in there somewhere.
+  elastic_transform:
+    alpha: 2000.
+    sigma: 50.
+    order: 0
+
+
+# Specify configuration for the loader
+loader_config:
+  # Number of processes to use for loading data. Set to (say) 10 if you wish to
+  # use 10 CPU cores, or to 0 if you wish to use the same process for training and
+  # data-loading (generally not recommended).
+  batch_size: 1
+  num_workers: 1
+  drop_last: True
+  pin_memory: True
+  shuffle: True
