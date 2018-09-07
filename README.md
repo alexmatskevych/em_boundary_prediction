@@ -15,6 +15,9 @@ export PYTHONPATH="/path/to/neurofire:$PYTHONPATH"
 For training, we need to run train.py with arguments:
 
 1: project_folder
+
 2: config_name (name of the folder the configs are in)
+
 3(optional): config_folder the folder which the configs are in, needed for starting with sBatch default="./configs/" 
+
 4(optional): max_train_iters number of training iterations, default=100000
