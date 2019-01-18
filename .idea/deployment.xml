@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="matskevy@vm-kreshuk-03.embl.de:22">
+    <serverData>
+      <paths name="amatskev@hcigpu03.iwr.uni-heidelberg.de:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$/../platyneris_scripts" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="amatskev@hcigpu04.iwr.uni-heidelberg.de:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$/../platyneris_scripts" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="amatskev@mipserver01.iwr.uni-heidelberg.de:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$/../platyneris_scripts" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="matskevy@vm-kreshuk-03.embl.de:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/g/kreshuk/matskevych/debug/pycharm_deployment/em_boundary_prediction" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -22,8 +22,10 @@ class NeuroLoader(Zip):
         # Get kwargs for raw volume
         raw_volume_kwargs = dict(volume_config.get('raw'))
         raw_volume_kwargs.update(slicing_config)
-        # Build raw volume
+        #build raw volume
         self.raw_volume = RawVolume(name=name, **raw_volume_kwargs)
+
+
 
         # Get kwargs for segmentation volume
         segmentation_volume_kwargs = dict(volume_config.get('segmentation'))
@@ -42,6 +44,15 @@ class NeuroLoader(Zip):
         self.master_config = {} if master_config is None else master_config
         # Get transforms
         self.transforms = self.get_transforms()
+
+    def __getitem__(self, index):
+        fetched = [dataset[index] for dataset in self.datasets]
+        if self.transforms is None:
+            return fetched
+        elif callable(self.transforms):
+            return self.transforms(*fetched)
+        else:
+            raise RuntimeError
 
     def get_transforms(self):
 

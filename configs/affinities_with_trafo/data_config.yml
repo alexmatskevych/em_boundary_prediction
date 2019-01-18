@@ -88,7 +88,7 @@ loader_config:
   # use 10 CPU cores, or to 0 if you wish to use the same process for training and
   # data-loading (generally not recommended).
   batch_size: 1
-  num_workers: 6
+  num_workers: 0
   drop_last: True
   pin_memory: True
   shuffle: True

@@ -54,7 +54,6 @@ def set_up_training(project_directory, config, use_affinities):
     loss_val = LossWrapper(criterion=criterion,
                            transforms=Compose(InvertTarget()))
 
-
     logger.info("Building trainer.")
     smoothness = 0.95
     # Build the trainer object
@@ -68,7 +67,7 @@ def set_up_training(project_directory, config, use_affinities):
         .register_callback(SaveAtBestValidationScore(smoothness=smoothness, verbose=True))\
         .build_metric(criterion)\
         .register_callback(AutoLR(factor=0.98,
-                                  patience='100 iterations',
+                                  patience='200 iterations',
                                   monitor_while='validating',
                                   monitor_momentum=smoothness,
                                   consider_improvement_with_respect_to='previous'))\
@@ -126,8 +125,8 @@ def main():
     # Input arguments: the project directory to save weights etc
     # and the number of iterations to train
     parser = argparse.ArgumentParser()
-    parser.add_argument('project_folder', type=str)
-    parser.add_argument('config_name', type=str)
+    parser.add_argument('--project_folder', type=str, default="/g/kreshuk/matskevych/boundary_map_prediction/project_folder/")
+    parser.add_argument('--config_name', type=str, default="affinities_with_trafo")
     parser.add_argument('--config_folder', type=str, default="./configs/")  # current_path = path where sBATCH file is
     parser.add_argument('--max_train_iters', type=int, default=int(1e5))
 
